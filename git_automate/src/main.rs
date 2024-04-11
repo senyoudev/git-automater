@@ -51,5 +51,19 @@ fn update_commit_push(
 }
 
 fn main() {
+    // params should be passed in the cli as arguments and we get them using std::env::args()
+    let args: Vec<String> = std::env::args().collect();
+
+    // Check if the number of arguments is correct
+    if args.len() != 4 {
+        eprintln!("Usage: git-auto-push <commit_message> <remote> <branch>");
+        exit(1);
+    }
+
+    let commit_message = &args[1];
+    let remote = &args[2];
+    let branch = &args[3];
+
+    update_commit_push(commit_message, remote, branch)
     
 }
