@@ -76,7 +76,7 @@ fn main() {
                 eprintln!("Branch name contains invalid characters");
                 exit(1);
             }
-            update_commit_push(excluded_files,commit_message, remote, branch);
+            update_commit_push(excluded_files, commit_message, remote, branch);
         }
         _ => {}
     }
