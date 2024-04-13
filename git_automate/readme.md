@@ -26,7 +26,6 @@ In the terminal, if you run the following command:
 
 ## Future Features
 
-- Add the ability to add the remote and branch name to the configuration file: In progress
 - Add the possibility of creating a new repository
 - Add the possibility of creating a new branch
 - Add the possibility of switching branches
