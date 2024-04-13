@@ -1,18 +1,21 @@
 mod display_help;
 mod update_commit_push;
 mod clone;
+mod config_repo;
 
 use display_help::display_help;
 use std::env::args;
 use std::process::exit;
 use update_commit_push::{add, commit, push, update_commit_push};
 use clone::clone;
+use config_repo::read_config;
 
 fn main() {
-    // params should be passed in the cli as arguments and we get them using std::env::args()
+    // params should be passed in the cli as arguments and we get them using std::env::args() or passed to the config file
+    let config = read_config();
     let args: Vec<String> = args().collect();
-    let default_remote = String::from("origin");
-    let default_branch = String::from("main");
+    let default_remote = &config.remote.unwrap_or_else(|| String::from("origin"));
+    let default_branch = &config.branch.unwrap_or_else(|| String::from("main"));
     let default_commit_message = String::from("Default commit message");
 
     if args.len() < 2 || args[1] == "help" {
