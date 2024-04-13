@@ -2,6 +2,7 @@ mod display_help;
 mod update_commit_push;
 mod clone;
 mod config_repo;
+mod create_repo;
 
 use display_help::display_help;
 use std::env::args;
