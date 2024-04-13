@@ -1,10 +1,12 @@
 mod display_help;
 mod update_commit_push;
+mod clone;
 
 use display_help::display_help;
 use std::env::args;
 use std::process::exit;
 use update_commit_push::{add, commit, push, update_commit_push};
+use clone::clone;
 
 fn main() {
     // params should be passed in the cli as arguments and we get them using std::env::args()
@@ -21,6 +23,17 @@ fn main() {
     let command = &args[1];
 
     match command.as_str() {
+        "clone" => {
+            let url = args.get(2).expect("URL is required");
+            // check if the URL is valid
+            if !url.starts_with("https://") && !url.starts_with("git@") {
+                eprintln!("Invalid URL");
+                exit(1);
+            }
+
+            clone(url);
+
+        },
         "help" => {
             display_help();
             return;
@@ -56,13 +69,13 @@ fn main() {
             push(remote, branch);
         }
         "pushFromOne" => {
-             let excluded_files = if let Some(files) = args.get(2) {
+             let excluded_files = if let Some(files) = args.get(3) {
                 files.split(",").collect()
             } else {
                 vec![]
             };
             let commit_message = args
-                .get(3)
+                .get(2)
                 .unwrap_or(&default_commit_message);
             let remote = args.get(4).unwrap_or(&default_remote);
             let branch = args.get(5).unwrap_or(&default_branch);

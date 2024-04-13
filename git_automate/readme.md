@@ -26,9 +26,7 @@ In the terminal, if you run the following command:
 
 ## Future Features
 
-- Add the help command to the script to show the available commands.
 - Add the ability to add the remote and branch name to the configuration file.
 - Add the possibility of creating a new repository
-- Add the possibility of cloning a repository
 - Add the possibility of creating a new branch
 - Add the possibility of switching branches
