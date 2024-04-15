@@ -3,6 +3,7 @@ mod update_commit_push;
 mod clone;
 mod config_repo;
 mod create_branch;
+mod switch_branch;
 
 
 use display_help::display_help;
@@ -12,6 +13,7 @@ use update_commit_push::{add, commit, push, update_commit_push};
 use clone::clone;
 use config_repo::read_config;
 use create_branch::createBranch;
+use switch_branch::switch_branch;
 
 fn main() {
     // params should be passed in the cli as arguments and we get them using std::env::args() or passed to the config file
@@ -101,6 +103,10 @@ fn main() {
             let branch_name = args.get(2).expect("Branch name is required");
             createBranch(branch_name);
         },
+        "switchBranchTo" => {
+            let branch_name = args.get(2).expect("Branch name is required");
+            switch_branch(branch_name);
+        }
         _ => {}
     }
 }
