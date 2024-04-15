@@ -2,7 +2,8 @@ mod display_help;
 mod update_commit_push;
 mod clone;
 mod config_repo;
-mod create_repo;
+mod create_branch;
+
 
 use display_help::display_help;
 use std::env::args;
@@ -10,6 +11,7 @@ use std::process::exit;
 use update_commit_push::{add, commit, push, update_commit_push};
 use clone::clone;
 use config_repo::read_config;
+use create_branch::createBranch;
 
 fn main() {
     // params should be passed in the cli as arguments and we get them using std::env::args() or passed to the config file
@@ -94,7 +96,11 @@ fn main() {
                 exit(1);
             }
             update_commit_push(excluded_files, commit_message, remote, branch);
-        }
+        },
+        "createBranch" => {
+            let branch_name = args.get(2).expect("Branch name is required");
+            createBranch(branch_name);
+        },
         _ => {}
     }
 }

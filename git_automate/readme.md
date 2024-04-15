@@ -26,6 +26,6 @@ In the terminal, if you run the following command:
 
 ## Future Features
 
-- Add the possibility of creating a new repository
 - Add the possibility of creating a new branch
 - Add the possibility of switching branches
+- Add the possibility of creating a new repository
